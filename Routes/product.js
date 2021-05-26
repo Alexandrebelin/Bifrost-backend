@@ -7,11 +7,11 @@ const cloudinary = require("cloudinary").v2;
 
 const Product = require("../Models/Product");
 
-// PUBLISHING A PRODUCT
+// PUBLISH A PRODUCT
 
 router.post("/product/publish", async (req, res) => {
   try {
-    const { title, price, description, brand, conditions, color, available } =
+    const { title, price, description, brand, condition, color, quantitie } =
       req.fields;
     if (
       title &&
@@ -19,19 +19,17 @@ router.post("/product/publish", async (req, res) => {
       price &&
       brand &&
       color &&
-      conditions &&
-      available
+      condition &&
+      quantitie
     ) {
       const newProduct = new Product({
         title: title,
         price: price,
         description: description,
-        details: [
-          { brand: brand },
-          { color: color },
-          { conditions: conditions },
-          { available: available },
-        ],
+        brand: brand,
+        color: color,
+        condition: condition,
+        quantitie: quantitie,
       });
 
       //   Upload the picture
@@ -85,7 +83,7 @@ router.put("/product/update/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const productToModify = await Product.findById(id);
-    const { title, price, description, brand, conditions, color, available } =
+    const { title, price, description, brand, condition, color, quantitie } =
       req.fields;
 
     if (title) {
@@ -97,31 +95,22 @@ router.put("/product/update/:id", async (req, res) => {
     if (description) {
       productToModify.description = description;
     }
-    const details = productToModify.details;
-    for (i = 0; i < details.length; i++) {
-      if (details[i].brand) {
-        if (details) details[i].brand = brand;
-      }
-    }
-    if (details[i].color) {
-      if (color) {
-        details[i].color = color;
-      }
-    }
-    if (details[i].conditions) {
-      if (conditions) {
-        details[i].conditions = conditions;
-      }
-    }
-    if (details[i].available) {
-      if (available) {
-        details[i].available = available;
-      }
+
+    if (brand) {
+      productToModify.brand = brand;
     }
 
-    // Notify to Mongoose that we modify a product array
+    if (condition) {
+      productToModify.condition = condition;
+    }
 
-    productToModify.markModified("details");
+    if (color) {
+      productToModify.color = color;
+    }
+
+    if (quantitie) {
+      productToModify.quantitie = quantitie;
+    }
 
     if (req.files.image) {
       const result = await cloudinary.uploader.upload(req.files.image.path, {
