@@ -56,7 +56,7 @@ router.post("/product/publish", async (req, res) => {
 router.get("/product/:id", async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
-    console.log(product);
+    console.log(req.params.id);
     res.json(product);
   } catch (error) {
     console.log(error.message);
@@ -69,7 +69,6 @@ router.get("/product/:id", async (req, res) => {
 router.get("/product", async (req, res) => {
   try {
     const product = await Product.find();
-    console.log(product);
     res.json(product);
   } catch (error) {
     console.log(error.message);
