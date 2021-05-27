@@ -56,7 +56,7 @@ router.post("/product/publish", async (req, res) => {
 router.get("/product/:id", async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
-    console.log(req.params.id);
+
     res.json(product);
   } catch (error) {
     console.log(error.message);
