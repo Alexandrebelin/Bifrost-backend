@@ -11,24 +11,14 @@ const Product = require("../Models/Product");
 
 router.post("/product/publish", async (req, res) => {
   try {
-    const { title, price, description, brand, condition, color, quantitie } =
-      req.fields;
-    if (
-      title &&
-      description &&
-      price &&
-      brand &&
-      color &&
-      condition &&
-      quantitie
-    ) {
+    const { title, price, description, brand, color, quantitie } = req.fields;
+    if (title && description && price && brand && color && quantitie) {
       const newProduct = new Product({
         title: title,
         price: price,
         description: description,
         brand: brand,
         color: color,
-        condition: condition,
         quantitie: quantitie,
       });
 
@@ -82,8 +72,7 @@ router.put("/product/update/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const productToModify = await Product.findById(id);
-    const { title, price, description, brand, condition, color, quantitie } =
-      req.fields;
+    const { title, price, description, brand, color, quantitie } = req.fields;
 
     if (title) {
       productToModify.title = title;
@@ -97,10 +86,6 @@ router.put("/product/update/:id", async (req, res) => {
 
     if (brand) {
       productToModify.brand = brand;
-    }
-
-    if (condition) {
-      productToModify.condition = condition;
     }
 
     if (color) {

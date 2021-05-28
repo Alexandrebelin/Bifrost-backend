@@ -6,8 +6,7 @@ const Product = mongoose.model("Product", {
   description: String,
   brand: String,
   color: String,
-  condition: String,
-  quantitie: String,
+  quantitie: Number,
   image: { type: mongoose.Schema.Types.Mixed, default: {} },
 });
 
