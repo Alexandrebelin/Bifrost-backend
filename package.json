@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +18,11 @@
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "mongoose": "^5.12.11"
+  },
+  "devDependencies": {
+    "jest": "^27.0.1",
+    "mongodb-memory-server": "^6.9.6",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3"
   }
 }

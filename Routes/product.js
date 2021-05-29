@@ -7,7 +7,7 @@ const cloudinary = require("cloudinary").v2;
 
 const Product = require("../Models/Product");
 
-// PUBLISH A PRODUCT
+// Publish a product
 
 router.post("/product/publish", async (req, res) => {
   try {
@@ -41,25 +41,25 @@ router.post("/product/publish", async (req, res) => {
   }
 });
 
-// Find a product by id
+// Get a product by id
 
 router.get("/product/:id", async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
 
-    res.json(product);
+    res.status(200).json(product);
   } catch (error) {
     console.log(error.message);
     res.status(400).json({ message: error.message });
   }
 });
 
-// Find all the products
+// Get all the products
 
 router.get("/product", async (req, res) => {
   try {
     const product = await Product.find();
-    res.json(product);
+    res.status(200).json(product);
   } catch (error) {
     console.log(error.message);
     res.status(400).json({ message: error.message });
