@@ -62,4 +62,24 @@ Delete a product
 
 <br>
 
+## Setup Instructions
+
+Clone this repository :
+
+```
+git clone https://github.com/Alexandrebelin/Bifrost-backend.git
+```
+
+Install dependencies with npm:
+
+```
+npm install
+```
+
+Once the installation is complete, run it:
+
+```
+npx nodemon index.js
+```
+
 
