@@ -3,7 +3,7 @@ const router = express.Router();
 
 const cloudinary = require("cloudinary").v2;
 
-// MODELS IMPORT
+// Model import
 
 const Product = require("../Models/Product");
 
